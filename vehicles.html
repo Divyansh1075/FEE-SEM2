@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles - Elite Motors</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">ELITE MOTORS</a>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vehicles.html" class="active">Vehicles</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="financing.html">Financing</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="showroom.html">Virtual Showroom</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="login.html" class="nav-btn">Sign In</a>
+            <a href="schedule.html" class="nav-btn primary">Schedule Test Drive</a>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Vehicle Collection</h1>
+            <p>Discover our premium selection of luxury, sports, and electric vehicles</p>
+        </div>
+    </section>
+
+    <!-- Vehicle Categories -->
+    <section class="vehicle-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">All Vehicles</button>
+                <button class="tab-btn" data-category="luxury">Luxury</button>
+                <button class="tab-btn" data-category="sports">Sports</button>
+                <button class="tab-btn" data-category="electric">Electric</button>
+                <button class="tab-btn" data-category="suv">SUV</button>
+            </div>
+
+            <div class="vehicles-grid">
+                <div class="vehicle-card" data-category="luxury">
+                    <div class="vehicle-image">
+                        <div class="placeholder-img">Luxury Sedan</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Mercedes-Benz S-Class</h3>
+                        <p class="vehicle-price">Starting at $109,800</p>
+                        <p class="vehicle-desc">The pinnacle of luxury and comfort</p>
+                        <a href="#" class="btn-details">View Details</a>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="sports">
+                    <div class="vehicle-image">
+                        <div class="placeholder-img">Sports Car</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Porsche 911 Turbo S</h3>
+                        <p class="vehicle-price">Starting at $207,000</p>
+                        <p class="vehicle-desc">Pure performance engineering</p>
+                        <a href="#" class="btn-details">View Details</a>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="electric">
+                    <div class="vehicle-image">
+                        <div class="placeholder-img">Electric Vehicle</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Tesla Model S Plaid</h3>
+                        <p class="vehicle-price">Starting at $129,990</p>
+                        <p class="vehicle-desc">Future of electric performance</p>
+                        <a href="#" class="btn-details">View Details</a>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="suv">
+                    <div class="vehicle-image">
+                        <div class="placeholder-img">Luxury SUV</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>BMW X7 M50i</h3>
+                        <p class="vehicle-price">Starting at $98,900</p>
+                        <p class="vehicle-desc">Luxury meets capability</p>
+                        <a href="#" class="btn-details">View Details</a>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="luxury">
+                    <div class="vehicle-image">
+                        <div class="placeholder-img">Executive Sedan</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Audi A8 L</h3>
+                        <p class="vehicle-price">Starting at $86,500</p>
+                        <p class="vehicle-desc">Technology and elegance combined</p>
+                        <a href="#" class="btn-details">View Details</a>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="sports">
+                    <div class="vehicle-image">
+                        <div class="placeholder-img">Supercar</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Lamborghini Huracán</h3>
+                        <p class="vehicle-price">Starting at $248,295</p>
+                        <p class="vehicle-desc">Italian excellence in motion</p>
+                        <a href="#" class="btn-details">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Vehicle category filtering
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const vehicleCards = document.querySelectorAll('.vehicle-card');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabBtns.forEach(tab => tab.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const category = btn.getAttribute('data-category');
+
+                vehicleCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elite Motors</h3>
+                    <p>Your premier destination for luxury and performance vehicles. We've been serving discerning customers for over 15 years with unmatched quality and service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">💼</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="vehicles.html">Vehicles</a></li>
+                        <li><a href="inventory.html">Inventory</a></li>
+                        <li><a href="financing.html">Financing</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Vehicle Sales</a></li>
+                        <li><a href="services.html">Maintenance & Repair</a></li>
+                        <li><a href="financing.html">Financing Options</a></li>
+                        <li><a href="services.html">Trade-In Evaluation</a></li>
+                        <li><a href="services.html">Extended Warranties</a></li>
+                        <li><a href="schedule.html">Test Drives</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Luxury Auto Drive<br>Premium City, PC 12345</p>
+                    <p>📞 (555) 123-4567</p>
+                    <p>✉️ info@elitemotors.com</p>
+                    <p><strong>Business Hours:</strong><br>
+                    Mon-Fri: 9:00 AM - 7:00 PM<br>
+                    Saturday: 9:00 AM - 6:00 PM<br>
+                    Sunday: 11:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elite Motors. All rights reserved. | <a href="#" style="color: #3f69ff;">Privacy Policy</a> | <a href="#" style="color: #3f69ff;">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

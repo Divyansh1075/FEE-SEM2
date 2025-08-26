@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Elite Motors</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">ELITE MOTORS</a>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vehicles.html">Vehicles</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="financing.html">Financing</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="showroom.html">Virtual Showroom</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="login.html" class="nav-btn">Sign In</a>
+            <a href="schedule.html" class="nav-btn primary">Schedule Test Drive</a>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About Elite Motors</h1>
+            <p>Your premier destination for luxury and performance vehicles</p>
+        </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>Founded in 1995, Elite Motors has been at the forefront of the luxury automotive industry for over 25 years. What started as a small family business has grown into one of the most trusted names in premium vehicle sales and service.</p>
+            
+            <p>Our passion for automotive excellence drives everything we do. From the moment you step into our showroom to long after you drive away in your dream car, we're committed to providing an unparalleled experience that exceeds expectations.</p>
+
+            <p>We believe that purchasing a vehicle should be more than just a transaction—it should be the beginning of a relationship built on trust, expertise, and exceptional service.</p>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Our Values</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Excellence</h3>
+                    <p>We maintain the highest standards in everything we do, from vehicle selection to customer service.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Integrity</h3>
+                    <p>Honest, transparent dealings with every customer, ensuring trust and long-lasting relationships.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Innovation</h3>
+                    <p>Embracing cutting-edge technology and forward-thinking solutions in the automotive industry.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Service</h3>
+                    <p>Dedicated to providing personalized, attentive service that puts our customers first.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div class="placeholder-img">Photo</div>
+                    </div>
+                    <h3>Michael Rodriguez</h3>
+                    <p class="title">General Manager</p>
+                    <p>With 20 years in the automotive industry, Michael leads our team with passion and expertise.</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div class="placeholder-img">Photo</div>
+                    </div>
+                    <h3>Sarah Chen</h3>
+                    <p class="title">Sales Director</p>
+                    <p>Sarah's dedication to customer satisfaction has made her one of our top performers.</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div class="placeholder-img">Photo</div>
+                    </div>
+                    <h3>David Thompson</h3>
+                    <p class="title">Service Manager</p>
+                    <p>David ensures every vehicle receives the highest quality service and maintenance.</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div class="placeholder-img">Photo</div>
+                    </div>
+                    <h3>Emily Johnson</h3>
+                    <p class="title">Finance Specialist</p>
+                    <p>Emily helps customers find the perfect financing solution for their dream vehicle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Awards & Recognition</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">🏆</div>
+                    <h3>Dealer of the Year</h3>
+                    <p>2023 - Luxury Auto Association</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-icon">⭐</div>
+                    <h3>Customer Excellence Award</h3>
+                    <p>2022 - State Automotive Board</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-icon">🎖️</div>
+                    <h3>Top Sales Performance</h3>
+                    <p>2021 - Regional Sales Championship</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-icon">🌟</div>
+                    <h3>Community Service Award</h3>
+                    <p>2020 - Local Chamber of Commerce</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+    <style>
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #333;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-member h3 {
+            color: #00ff88;
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+
+        .team-member .title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .team-member p:last-child {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .award-card {
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            padding: 30px 20px;
+            border-radius: 15px;
+        }
+
+        .award-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .award-card h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .award-card p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+    </style>
+</body>
+</html>

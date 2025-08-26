@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory - Elite Motors</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">ELITE MOTORS</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vehicles.html">Vehicles</a></li>
+            <li><a href="inventory.html" class="active">Inventory</a></li>
+            <li><a href="financing.html">Financing</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="showroom.html">Virtual Showroom</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="login.html" class="nav-btn">Sign In</a>
+            <a href="schedule.html" class="nav-btn primary">Schedule Test Drive</a>
+        </div>
+        <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Current Inventory</h1>
+            <p>Browse our available vehicles ready for immediate delivery</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>Available Now</h2>
+            <div class="vehicles-grid">
+                <div class="vehicle-card">
+                    <div class="vehicle-image"><div class="placeholder-img">BMW M5</div></div>
+                    <div class="vehicle-info">
+                        <h3>2024 BMW M5 Competition</h3>
+                        <p class="vehicle-price">$119,900</p>
+                        <p class="vehicle-desc">Mineral Grey, Premium Package</p>
+                        <a href="#" class="btn-details">View Details</a>
+                    </div>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-image"><div class="placeholder-img">Audi RS7</div></div>
+                    <div class="vehicle-info">
+                        <h3>2024 Audi RS7 Sportback</h3>
+                        <p class="vehicle-price">$134,500</p>
+                        <p class="vehicle-desc">Daytona Grey, Sport Package</p>
+                        <a href="#" class="btn-details">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+    </script>
+</body>
+</html>

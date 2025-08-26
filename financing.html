@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financing - Elite Motors</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">ELITE MOTORS</a>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vehicles.html">Vehicles</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="financing.html" class="active">Financing</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="showroom.html">Virtual Showroom</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="login.html" class="nav-btn">Sign In</a>
+            <a href="schedule.html" class="nav-btn primary">Schedule Test Drive</a>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Vehicle Financing</h1>
+            <p>Flexible financing solutions to make your dream car affordable</p>
+        </div>
+    </section>
+
+    <!-- Financing Options -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Financing Options</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>💳 Traditional Auto Loans</h3>
+                    <p>Competitive rates with flexible terms up to 84 months. Build equity as you pay.</p>
+                    <ul style="text-align: left; margin-top: 15px; opacity: 0.8;">
+                        <li>Rates starting at 2.9% APR*</li>
+                        <li>Terms from 24 to 84 months</li>
+                        <li>No prepayment penalties</li>
+                        <li>Quick approval process</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>🔄 Lease Programs</h3>
+                    <p>Lower monthly payments with the latest vehicle technology and warranty coverage.</p>
+                    <ul style="text-align: left; margin-top: 15px; opacity: 0.8;">
+                        <li>Lower monthly payments</li>
+                        <li>Latest models available</li>
+                        <li>Warranty coverage included</li>
+                        <li>Option to purchase at lease end</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>🏦 Credit Solutions</h3>
+                    <p>Special financing programs for all credit situations, including first-time buyers.</p>
+                    <ul style="text-align: left; margin-top: 15px; opacity: 0.8;">
+                        <li>All credit types accepted</li>
+                        <li>First-time buyer programs</li>
+                        <li>Credit rebuilding options</li>
+                        <li>Co-signer programs available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Calculator -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Payment Calculator</h2>
+            <div style="max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px;">
+                <div class="form-group">
+                    <label for="vehicle-price">Vehicle Price ($)</label>
+                    <input type="number" id="vehicle-price" value="50000" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="down-payment">Down Payment ($)</label>
+                    <input type="number" id="down-payment" value="10000" min="0">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label for="interest-rate">Interest Rate (%)</label>
+                        <input type="number" id="interest-rate" value="4.5" min="0" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-term">Loan Term (months)</label>
+                        <select id="loan-term">
+                            <option value="24">24 months</option>
+                            <option value="36">36 months</option>
+                            <option value="48">48 months</option>
+                            <option value="60" selected>60 months</option>
+                            <option value="72">72 months</option>
+                            <option value="84">84 months</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" id="calculate" class="btn-submit" style="margin-top: 20px;">Calculate Payment</button>
+                <div id="payment-result" style="margin-top: 20px; padding: 20px; background: rgba(0,255,136,0.1); border-radius: 10px; display: none;">
+                    <h3 style="color: #00ff88; margin-bottom: 10px;">Your Estimated Payment</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: #00ff88;" id="monthly-payment">$0</p>
+                    <p style="opacity: 0.8; margin-top: 10px;" id="payment-details"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apply for Financing -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Apply for Pre-Approval</h2>
+                <p style="text-align: center; opacity: 0.8; margin-bottom: 30px;">Get pre-approved in minutes with no impact to your credit score</p>
+                <form>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last-name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="income">Annual Income</label>
+                            <select id="income" name="income" required>
+                                <option value="">Select income range</option>
+                                <option value="30000">$30,000 - $50,000</option>
+                                <option value="50000">$50,000 - $75,000</option>
+                                <option value="75000">$75,000 - $100,000</option>
+                                <option value="100000">$100,000+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="employment">Employment Status</label>
+                        <select id="employment" name="employment" required>
+                            <option value="">Select employment status</option>
+                            <option value="employed">Employed Full-Time</option>
+                            <option value="self-employed">Self-Employed</option>
+                            <option value="retired">Retired</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Apply for Pre-Approval</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Payment calculator
+        document.getElementById('calculate').addEventListener('click', () => {
+            const price = parseFloat(document.getElementById('vehicle-price').value);
+            const downPayment = parseFloat(document.getElementById('down-payment').value);
+            const rate = parseFloat(document.getElementById('interest-rate').value) / 100 / 12;
+            const term = parseInt(document.getElementById('loan-term').value);
+            
+            const loanAmount = price - downPayment;
+            const monthlyPayment = (loanAmount * rate * Math.pow(1 + rate, term)) / (Math.pow(1 + rate, term) - 1);
+            
+            document.getElementById('monthly-payment').textContent = '$' + monthlyPayment.toFixed(2);
+            document.getElementById('payment-details').textContent = 
+                `Loan Amount: $${loanAmount.toLocaleString()} | Total Interest: $${((monthlyPayment * term) - loanAmount).toFixed(2)}`;
+            document.getElementById('payment-result').style.display = 'block';
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Pre-approval application submitted! We will contact you within 24 hours.');
+        });
+    </script>
+</body>
+</html>

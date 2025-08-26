@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Motors - Premium Car Showroom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #171a20;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #171a20;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: #171a20;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links li a:hover {
+            color: #3f69ff;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3f69ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            border: 2px solid #171a20;
+            background: transparent;
+            color: #171a20;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: #171a20;
+            color: #ffffff;
+        }
+
+        .nav-btn.primary {
+            background: #3f69ff;
+            border-color: #3f69ff;
+            color: #ffffff;
+        }
+
+        .nav-btn.primary:hover {
+            background: #2f59ef;
+            border-color: #2f59ef;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(63, 105, 255, 0.15) 0%, rgba(47, 89, 239, 0.08) 50%, rgba(255, 255, 255, 0.05) 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23f8f9fa"/><stop offset="50%" style="stop-color:%23ffffff"/><stop offset="100%" style="stop-color:%23e9ecef"/></linearGradient><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%233f69ff" stop-opacity="0.1"/><stop offset="100%" style="stop-color:%233f69ff" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="800" fill="url(%23bg)"/><circle cx="200" cy="150" r="120" fill="url(%23glow)"/><circle cx="1000" cy="650" r="180" fill="url(%23glow)"/><circle cx="600" cy="400" r="200" fill="url(%23glow)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: #171a20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(63, 105, 255, 0.05) 50%, transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            50% { transform: translateX(100%) skewX(-15deg); }
+            100% { transform: translateX(-100%) skewX(-15deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            position: relative;
+            background: linear-gradient(135deg, #171a20 0%, #3f69ff 50%, #171a20 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { 
+                filter: drop-shadow(0 0 5px rgba(63, 105, 255, 0.3));
+                transform: translateY(0);
+            }
+            100% { 
+                filter: drop-shadow(0 0 15px rgba(63, 105, 255, 0.6));
+                transform: translateY(-2px);
+            }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #3f69ff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(63, 105, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.6;
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .hero-btn {
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(63, 105, 255, 0.2);
+        }
+
+        .hero-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .hero-btn:hover::before {
+            left: 100%;
+        }
+
+        .hero-btn.primary {
+            background: linear-gradient(135deg, #3f69ff 0%, #2f59ef 100%);
+            color: #ffffff;
+            border: 2px solid transparent;
+        }
+
+        .hero-btn.primary:hover {
+            background: linear-gradient(135deg, #2f59ef 0%, #1e4ed8 100%);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(63, 105, 255, 0.4);
+        }
+
+        .hero-btn.secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #3f69ff;
+            border: 2px solid #3f69ff;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-btn.secondary:hover {
+            background: #3f69ff;
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(63, 105, 255, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0.6;
+            color: #3f69ff;
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { 
+                transform: translateX(-50%) translateY(0); 
+            }
+            40% { 
+                transform: translateX(-50%) translateY(-10px); 
+            }
+            60% { 
+                transform: translateX(-50%) translateY(-5px); 
+            }
+        }
+        }
+
+        .hero-btn {
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-btn.primary {
+            background: #3f69ff;
+            color: #ffffff;
+            border: 2px solid #3f69ff;
+        }
+
+        .hero-btn.primary:hover {
+            background: #2f59ef;
+            border-color: #2f59ef;
+        }
+
+        .hero-btn.secondary {
+            background: transparent;
+            color: #171a20;
+            border: 2px solid #171a20;
+        }
+
+        .hero-btn.secondary:hover {
+            background: #171a20;
+            color: #ffffff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="100" cy="100" r="50" fill="%233f69ff" opacity="0.05"/><circle cx="1100" cy="500" r="80" fill="%232f59ef" opacity="0.03"/><circle cx="600" cy="300" r="120" fill="%233f69ff" opacity="0.02"/></svg>');
+            pointer-events: none;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            font-weight: 300;
+            color: #171a20;
+            position: relative;
+            z-index: 1;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border: 1px solid rgba(63, 105, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(63, 105, 255, 0.2);
+            border-color: rgba(63, 105, 255, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3f69ff 0%, #2f59ef 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(63, 105, 255, 0.3));
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #171a20;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+            color: #171a20;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #3f69ff 0%, #2f59ef 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><circle cx="200" cy="100" r="60" fill="white" opacity="0.1"/><circle cx="1000" cy="300" r="80" fill="white" opacity="0.08"/><circle cx="600" cy="200" r="100" fill="white" opacity="0.05"/></svg>');
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-btn.primary {
+            background: #ffffff;
+            color: #3f69ff;
+            border: 2px solid #ffffff;
+        }
+
+        .cta-btn.primary:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Vehicle Showcase Section */
+        .vehicle-showcase {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        .vehicle-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="150" cy="150" r="80" fill="%233f69ff" opacity="0.03"/><circle cx="1050" cy="450" r="100" fill="%232f59ef" opacity="0.02"/></svg>');
+            pointer-events: none;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .showcase-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(63, 105, 255, 0.1);
+            border: 1px solid rgba(63, 105, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(63, 105, 255, 0.2);
+        }
+
+        .showcase-image {
+            height: 200px;
+            background: linear-gradient(135deg, #f1f3f4 0%, #e8eaed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .showcase-content {
+            padding: 25px;
+        }
+
+        .showcase-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #171a20;
+            font-weight: 600;
+        }
+
+        .showcase-price {
+            font-size: 1.3rem;
+            color: #3f69ff;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .showcase-content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        /* Statistics Section */
+        .statistics {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #3f69ff 0%, #2f59ef 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .statistics::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><circle cx="200" cy="100" r="60" fill="white" opacity="0.1"/><circle cx="1000" cy="300" r="80" fill="white" opacity="0.08"/><circle cx="600" cy="200" r="100" fill="white" opacity="0.05"/></svg>');
+            pointer-events: none;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%);
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="100" cy="100" r="50" fill="%233f69ff" opacity="0.03"/><circle cx="1100" cy="500" r="70" fill="%232f59ef" opacity="0.02"/></svg>');
+            pointer-events: none;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(63, 105, 255, 0.1);
+            border: 1px solid rgba(63, 105, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #171a20;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #3f69ff;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 60px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><circle cx="200" cy="100" r="60" fill="%233f69ff" opacity="0.1"/><circle cx="1000" cy="300" r="80" fill="%232f59ef" opacity="0.08"/></svg>');
+            pointer-events: none;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #3f69ff;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #3f69ff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(63, 105, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #3f69ff;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+            border-color: #2f59ef;
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #171a20;
+            border: 2px solid #171a20;
+        }
+
+        .cta-btn.secondary:hover {
+            background: #171a20;
+            color: #ffffff;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #171a20;
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                justify-content: start;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-actions {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">ELITE MOTORS</a>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vehicles.html">Vehicles</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="financing.html">Financing</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="showroom.html">Showroom</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="login.html" class="nav-btn">Login</a>
+            <a href="schedule.html" class="nav-btn primary">Schedule Test Drive</a>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="gradient-text">Experience Excellence</h1>
+            <p class="hero-subtitle">Discover our premium collection of luxury and performance vehicles. Where innovation meets sophistication.</p>
+            <div class="hero-buttons">
+                <a href="vehicles.html" class="hero-btn primary">View Collection</a>
+                <a href="schedule.html" class="hero-btn secondary">Schedule Test Drive</a>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="floating-element floating-1"></div>
+            <div class="floating-element floating-2"></div>
+            <div class="floating-element floating-3"></div>
+            <div class="floating-element floating-4"></div>
+            <div class="floating-element floating-5"></div>
+        </div>
+        
+        <!-- Shimmer Overlay -->
+        <div class="shimmer-overlay"></div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose Elite Motors</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Premium Selection</h3>
+                    <p>Carefully curated collection of luxury and performance vehicles from top manufacturers worldwide.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Expert Service</h3>
+                    <p>Professional maintenance and repair services by certified technicians with years of experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Flexible Financing</h3>
+                    <p>Competitive financing options and leasing programs tailored to meet your specific needs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Award Winning</h3>
+                    <p>Recognized for excellence in customer service and satisfaction for over 15 years.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicle Showcase Section -->
+    <section class="vehicle-showcase">
+        <div class="container">
+            <h2>Featured Vehicles</h2>
+            <p style="text-align: center; font-size: 1.1rem; opacity: 0.8; max-width: 600px; margin: 0 auto;">Explore our handpicked selection of premium vehicles, each representing the pinnacle of automotive excellence.</p>
+            <div class="showcase-grid">
+                <div class="showcase-card">
+                    <div class="showcase-image">2024 Luxury Sedan</div>
+                    <div class="showcase-content">
+                        <h3>Premium Luxury Sedan</h3>
+                        <div class="showcase-price">Starting at $85,000</div>
+                        <p>Experience unparalleled comfort and performance with our flagship luxury sedan featuring cutting-edge technology and elegant design.</p>
+                        <a href="vehicles.html" class="hero-btn secondary" style="display: inline-block; padding: 10px 20px; font-size: 0.9rem;">Learn More</a>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-image">2024 Sports Coupe</div>
+                    <div class="showcase-content">
+                        <h3>High-Performance Coupe</h3>
+                        <div class="showcase-price">Starting at $120,000</div>
+                        <p>Unleash your passion for driving with our high-performance coupe, engineered for speed and precision on every journey.</p>
+                        <a href="vehicles.html" class="hero-btn secondary" style="display: inline-block; padding: 10px 20px; font-size: 0.9rem;">Learn More</a>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-image">2024 Electric SUV</div>
+                    <div class="showcase-content">
+                        <h3>Electric SUV</h3>
+                        <div class="showcase-price">Starting at $95,000</div>
+                        <p>Embrace the future of mobility with our all-electric SUV, combining sustainability with luxury and advanced technology.</p>
+                        <a href="vehicles.html" class="hero-btn secondary" style="display: inline-block; padding: 10px 20px; font-size: 0.9rem;">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px; font-weight: 300;">Our Track Record</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Premium Vehicles</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; font-weight: 300; color: #171a20;">What Our Clients Say</h2>
+            <p style="text-align: center; font-size: 1.1rem; opacity: 0.8; max-width: 600px; margin: 0 auto; color: #171a20;">Don't just take our word for it. Here's what our valued customers have to say about their experience with Elite Motors.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Elite Motors exceeded all my expectations. The service was impeccable, and the vehicle quality is outstanding. I couldn't be happier with my purchase."</div>
+                    <div class="testimonial-author">Sarah Johnson</div>
+                    <div class="testimonial-role">Business Executive</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"The team at Elite Motors made the entire process seamless. Their expertise and attention to detail helped me find the perfect vehicle for my needs."</div>
+                    <div class="testimonial-author">Michael Chen</div>
+                    <div class="testimonial-role">Tech Entrepreneur</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Outstanding customer service and an incredible selection of vehicles. Elite Motors has earned my trust and loyalty for all future automotive needs."</div>
+                    <div class="testimonial-author">Emily Rodriguez</div>
+                    <div class="testimonial-role">Marketing Director</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Find Your Perfect Vehicle?</h2>
+            <p>Explore our extensive inventory and schedule a test drive today</p>
+            <div class="cta-buttons">
+                <a href="inventory.html" class="cta-btn primary">Browse Inventory</a>
+                <a href="contact.html" class="cta-btn secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elite Motors</h3>
+                    <p>Your premier destination for luxury and performance vehicles. We've been serving discerning customers for over 15 years with unmatched quality and service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">💼</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="vehicles.html">Vehicles</a></li>
+                        <li><a href="inventory.html">Inventory</a></li>
+                        <li><a href="financing.html">Financing</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Vehicle Sales</a></li>
+                        <li><a href="services.html">Maintenance & Repair</a></li>
+                        <li><a href="financing.html">Financing Options</a></li>
+                        <li><a href="services.html">Trade-In Evaluation</a></li>
+                        <li><a href="services.html">Extended Warranties</a></li>
+                        <li><a href="schedule.html">Test Drives</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Luxury Auto Drive<br>Premium City, PC 12345</p>
+                    <p>📞 (555) 123-4567</p>
+                    <p>✉️ info@elitemotors.com</p>
+                    <p><strong>Business Hours:</strong><br>
+                    Mon-Fri: 9:00 AM - 7:00 PM<br>
+                    Saturday: 9:00 AM - 6:00 PM<br>
+                    Sunday: 11:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elite Motors. All rights reserved. | <a href="#" style="color: #3f69ff;">Privacy Policy</a> | <a href="#" style="color: #3f69ff;">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
