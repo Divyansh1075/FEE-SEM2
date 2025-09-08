@@ -4,32 +4,439 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule Test Drive - Elite Motors</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #000000;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 16px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a.active {
+            font-weight: 600;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            min-width: 280px;
+            justify-content: flex-end;
+        }
+
+        #loginStatus {
+            display: flex;
+            align-items: center;
+            min-width: 140px;
+            justify-content: flex-end;
+        }
+
+        .nav-btn {
+            padding: 12px 28px;
+            border: 1px solid #000000;
+            background: transparent;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .nav-btn.primary {
+            background: #000000;
+            border-color: #000000;
+            color: #ffffff;
+        }
+
+        .nav-btn.primary:hover {
+            background: #333333;
+            border-color: #333333;
+        }
+
+        /* User Welcome Styles */
+        .user-welcome {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 0;
+        }
+
+        .welcome-text {
+            color: #000000;
+            font-weight: 500;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .logout-btn {
+            padding: 6px 12px;
+            border: 1px solid #000000;
+            background: transparent;
+            color: #000000;
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .logout-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 80px;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 60px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #000000;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #000000;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #000000;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #000000;
+            color: #ffffff;
+            padding: 20px;
+            border: none;
+            border-radius: 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .navbar {
+                padding: 15px 30px;
+            }
+            
+            .welcome-text {
+                font-size: 12px;
+            }
+            .logout-btn {
+                padding: 5px 10px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .nav-links li a {
+                font-size: 18px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-actions {
+                gap: 10px;
+                min-width: auto;
+            }
+
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            .user-welcome {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-end;
+            }
+            .welcome-text {
+                font-size: 11px;
+            }
+            .logout-btn {
+                padding: 4px 8px;
+                font-size: 9px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                padding: 40px 30px;
+                margin: 0 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .form-container h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="logo">ELITE MOTORS</a>
+        <a href="index.html" class="logo">Elite Motors</a>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="vehicles.html">Vehicles</a></li>
-            <li><a href="inventory.html">Inventory</a></li>
-            <li><a href="financing.html">Financing</a></li>
             <li><a href="services.html">Services</a></li>
+            <li><a href="finance.html">Financing</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="showroom.html">Virtual Showroom</a></li>
         </ul>
         <div class="nav-actions">
-            <a href="login.html" class="nav-btn">Sign In</a>
+            <div id="loginStatus">
+                <a href="login.html" class="nav-btn" id="loginButton">Login</a>
+                <div id="userWelcome" class="user-welcome" style="display: none;">
+                    <span class="welcome-text">Welcome, <span id="navUserName"></span></span>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
             <a href="schedule.html" class="nav-btn primary active">Schedule Test Drive</a>
         </div>
-        <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
     <section class="page-header">
         <div class="container">
             <h1>Schedule Your Test Drive</h1>
-            <p>Experience the thrill of driving your dream car</p>
+            <p>Experience the thrill of driving your dream car with Elite Motors</p>
         </div>
     </section>
 
@@ -37,33 +444,36 @@
         <div class="container">
             <div class="form-container">
                 <h2>Book Your Test Drive</h2>
-                <form>
+                <form id="scheduleForm" action="#" method="POST">
                     <div class="form-group">
                         <label for="vehicle">Vehicle of Interest</label>
                         <select id="vehicle" name="vehicle" required>
                             <option value="">Select a vehicle</option>
-                            <option value="bmw-m5">BMW M5 Competition</option>
-                            <option value="mercedes-s63">Mercedes-AMG S63</option>
-                            <option value="audi-rs7">Audi RS7 Sportback</option>
+                            <option value="bmw-m5">BMW 7 Series</option>
+                            <option value="mercedes-s63">Mercedes-Benz GLS 580</option>
+                            <option value="audi-rs7">Audi A8 L 60 TFSI</option>
                             <option value="porsche-911">Porsche 911 Turbo S</option>
                             <option value="tesla-plaid">Tesla Model S Plaid</option>
+                            <option value="lamborghini-huracan">Lamborghini Huracán EVO</option>
+                            <option value="bentley-continental">Bentley Continental GT</option>
+                            <option value="maserati-quattroporte">Maserati Quattroporte</option>
                         </select>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="date">Preferred Date</label>
                             <input type="date" id="date" name="date" required>
@@ -73,16 +483,19 @@
                             <select id="time" name="time" required>
                                 <option value="">Select time</option>
                                 <option value="9:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
                                 <option value="11:00">11:00 AM</option>
                                 <option value="1:00">1:00 PM</option>
+                                <option value="2:00">2:00 PM</option>
                                 <option value="3:00">3:00 PM</option>
+                                <option value="4:00">4:00 PM</option>
                                 <option value="5:00">5:00 PM</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="message">Additional Requests</label>
-                        <textarea id="message" name="message" placeholder="Any specific questions or requests for your test drive..."></textarea>
+                        <textarea id="message" name="message" placeholder="Any specific questions or requests for your test drive experience..."></textarea>
                     </div>
                     <button type="submit" class="btn-submit">Schedule Test Drive</button>
                 </form>
@@ -91,13 +504,144 @@
     </section>
 
     <script>
+        // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
         
-        document.querySelector('form').addEventListener('submit', (e) => {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Form submission
+        document.getElementById('scheduleForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Test drive scheduled! We will contact you to confirm your appointment.');
+            
+            const formData = new FormData(this);
+            const vehicle = formData.get('vehicle');
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const email = formData.get('email');
+            const date = formData.get('date');
+            const time = formData.get('time');
+            
+            // Basic validation
+            if (!vehicle || !name || !phone || !email || !date || !time) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Phone validation (basic)
+            const phonePattern = /^[\d\s\-\(\)\+]+$/;
+            if (!phonePattern.test(phone)) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+            
+            // Date validation (must be future date)
+            const selectedDate = new Date(date);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (selectedDate < today) {
+                alert('Please select a future date for your test drive');
+                return;
+            }
+            
+            // Success message
+            alert(`Thank you, ${name}! Your test drive for the ${vehicle} has been scheduled for ${date} at ${time}. We will contact you at ${phone} to confirm your appointment.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // Login State Management
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userName = localStorage.getItem('userName');
+            
+            const loginButton = document.getElementById('loginButton');
+            const userWelcome = document.getElementById('userWelcome');
+            const navUserName = document.getElementById('navUserName');
+            
+            if (isLoggedIn === 'true' && userName) {
+                // User is logged in
+                loginButton.style.display = 'none';
+                userWelcome.style.display = 'flex';
+                navUserName.textContent = userName;
+            } else {
+                // User is not logged in
+                loginButton.style.display = 'inline-block';
+                userWelcome.style.display = 'none';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userName');
+            checkLoginStatus();
+            alert('You have been logged out successfully!');
+        }
+
+        // Check login status when page loads
+        window.addEventListener('load', function() {
+            checkLoginStatus();
+            
+            // Check if a vehicle was selected from the vehicles page
+            const selectedVehicle = localStorage.getItem('selectedVehicle');
+            if (selectedVehicle) {
+                const vehicleSelect = document.getElementById('vehicle');
+                
+                // Vehicle mapping from vehicles page to schedule page options
+                const vehicleMapping = {
+                    'bmw-7-series': 'bmw-m5',
+                    'porsche-911': 'porsche-911',
+                    'tesla-model-s': 'tesla-plaid',
+                    'mercedes-gls': 'mercedes-s63',
+                    'audi-a8': 'audi-rs7',
+                    'lamborghini-huracan': 'lamborghini-huracan'
+                };
+                
+                // Set the selected vehicle in the dropdown
+                const mappedVehicle = vehicleMapping[selectedVehicle];
+                if (mappedVehicle) {
+                    vehicleSelect.value = mappedVehicle;
+                }
+                
+                // Clear the stored vehicle selection
+                localStorage.removeItem('selectedVehicle');
+            }
+        });
+        
+        // Also check when storage changes (in case user logs in from another tab)
+        window.addEventListener('storage', checkLoginStatus);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = 'none';
+            }
         });
     </script>
 </body>
