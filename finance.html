@@ -554,12 +554,12 @@
                 <div class="calculator-card card">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
                         <div>
-                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Vehicle Price</label>
-                            <input type="number" id="vehiclePrice" value="85000" style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.2); font-size: 16px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Vehicle Price (₹)</label>
+                            <input type="number" id="vehiclePrice" value="7055000" style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.2); font-size: 16px;">
                         </div>
                         <div>
-                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Down Payment</label>
-                            <input type="number" id="downPayment" value="15000" style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.2); font-size: 16px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Down Payment (₹)</label>
+                            <input type="number" id="downPayment" value="1245000" style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.2); font-size: 16px;">
                         </div>
                         <div>
                             <label style="display: block; margin-bottom: 8px; font-weight: 500;">Interest Rate (%)</label>
@@ -579,7 +579,7 @@
                     
                     <div style="text-align: center; padding: 30px; background: #f8f9fa; border-radius: 8px;">
                         <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px;">Estimated Monthly Payment</h3>
-                        <div id="monthlyPayment" style="font-size: 2.5rem; font-weight: 700; color: #000;">$1,547</div>
+                        <div id="monthlyPayment" style="font-size: 2.5rem; font-weight: 700; color: #000;">₹1,28,401</div>
                         <p style="margin-top: 15px; color: #666;">*Estimate only. Actual rates may vary based on credit approval.</p>
                     </div>
                     
@@ -694,7 +694,7 @@
                 monthlyPayment = loanAmount / loanTerm;
             }
             
-            document.getElementById('monthlyPayment').textContent = '$' + Math.round(monthlyPayment).toLocaleString();
+            document.getElementById('monthlyPayment').textContent = '₹' + Math.round(monthlyPayment).toLocaleString('en-IN');
         }
         
         // Add event listeners to all calculator inputs
