@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            margin: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .test-link:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Link Test Page</h1>
+    <p>Click these test links to verify navigation works:</p>
+    
+    <a href="schedule.html" class="test-link">Test Link to Schedule Page</a>
+    <a href="index.html" class="test-link">Test Link to Home Page</a>
+    <a href="vehicles.html" class="test-link">Test Link to Vehicles Page</a>
+    
+    <br><br>
+    
+    <h2>Direct File Path Tests:</h2>
+    <a href="file:///d:/project/FEE-SEM2/schedule.html" class="test-link">Direct Path to Schedule</a>
+    
+    <h2>JavaScript Test:</h2>
+    <button onclick="window.location.href='schedule.html'" class="test-link" style="border: none; cursor: pointer;">JS Navigation Test</button>
+    
+    <h2>Debug Info:</h2>
+    <p>Current page URL: <span id="currentUrl"></span></p>
+    <p>Base URL: <span id="baseUrl"></span></p>
+    
+    <script>
+        document.getElementById('currentUrl').textContent = window.location.href;
+        document.getElementById('baseUrl').textContent = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+        
+        console.log('Current URL:', window.location.href);
+        console.log('Current directory:', window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1));
+    </script>
+</body>
+</html>

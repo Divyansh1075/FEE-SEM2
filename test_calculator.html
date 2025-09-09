@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        .result { font-weight: bold; color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Payment Calculator Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Basic Calculation</h2>
+        <p>Vehicle Price: ₹7,055,000</p>
+        <p>Down Payment: ₹1,245,000</p>
+        <p>Interest Rate: 4.5%</p>
+        <p>Loan Term: 60 months</p>
+        <div id="result1"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: Zero Interest</h2>
+        <p>Vehicle Price: ₹5,000,000</p>
+        <p>Down Payment: ₹1,000,000</p>
+        <p>Interest Rate: 0%</p>
+        <p>Loan Term: 48 months</p>
+        <div id="result2"></div>
+    </div>
+    
+    <script>
+        function testCalculation(vehiclePrice, downPayment, interestRate, loanTerm) {
+            const loanAmount = vehiclePrice - downPayment;
+            const monthlyRate = (interestRate / 100) / 12;
+            
+            let monthlyPayment = 0;
+            if (loanAmount > 0) {
+                if (monthlyRate > 0) {
+                    monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, loanTerm)) / (Math.pow(1 + monthlyRate, loanTerm) - 1);
+                } else {
+                    monthlyPayment = loanAmount / loanTerm;
+                }
+            }
+            
+            return Math.round(monthlyPayment);
+        }
+        
+        // Test 1
+        const test1Result = testCalculation(7055000, 1245000, 4.5, 60);
+        document.getElementById('result1').innerHTML = `<span class="result">Monthly Payment: ₹${test1Result.toLocaleString('en-IN')}</span>`;
+        
+        // Test 2
+        const test2Result = testCalculation(5000000, 1000000, 0, 48);
+        document.getElementById('result2').innerHTML = `<span class="result">Monthly Payment: ₹${test2Result.toLocaleString('en-IN')}</span>`;
+        
+        console.log('Test 1 Result:', test1Result);
+        console.log('Test 2 Result:', test2Result);
+    </script>
+</body>
+</html>
