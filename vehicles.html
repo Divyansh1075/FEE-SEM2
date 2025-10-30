@@ -384,8 +384,10 @@
         /* Grid Layouts */
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         /* Vehicle Specific Styles */
@@ -399,6 +401,10 @@
 
         .vehicle-card {
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            min-height: 500px;
         }
 
         .vehicle-image {
@@ -429,6 +435,23 @@
             font-weight: 600;
             color: #000;
             margin-bottom: 15px;
+        }
+
+        /* Ensure consistent card heights and button positioning */
+        .vehicle-card .btn {
+            margin-top: auto;
+            align-self: flex-start;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .vehicle-card ul {
+            flex-grow: 1;
+            margin-bottom: 20px;
         }
 
         /* Footer */
@@ -499,7 +522,12 @@
             }
 
             .grid-3 {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+
+            .vehicle-card {
+                min-height: 450px;
             }
 
             .category-tabs {
@@ -566,7 +594,7 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">Type:</span><span>Sedan</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Fuel Economy:</span><span>23/32 mpg</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('bmw-7-series', 'BMW 7 Series')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Sports Cars -->
@@ -582,7 +610,7 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">0-60 mph:</span><span>2.6 seconds</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Top Speed:</span><span>205 mph</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('porsche-911', 'Porsche 911 Turbo S')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Electric Vehicles -->
@@ -598,11 +626,11 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">0-60 mph:</span><span>1.99 seconds</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Charging:</span><span>250kW Supercharger</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('tesla-model-s', 'Tesla Model S Plaid')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
-                <!-- SUV Category -->
-                <div class="vehicle-card card" data-category="suv" data-vehicle="mercedes-gls">
+                <!-- Luxury SUV Category -->
+                <div class="vehicle-card card" data-category="luxury" data-vehicle="mercedes-gls">
                     <div class="vehicle-image">
                         <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mercedes-Benz GLS" />
                     </div>
@@ -614,7 +642,7 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">Seating:</span><span>7 Passengers</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">0-60 mph:</span><span>4.9 seconds</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('mercedes-gls', 'Mercedes-Benz GLS 580')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Additional Luxury Vehicle -->
@@ -630,7 +658,7 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">0-60 mph:</span><span>4.6 seconds</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Features:</span><span>quattro AWD</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('audi-a8', 'Audi A8 L 60 TFSI')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Additional Sports Car -->
@@ -646,7 +674,7 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">0-60 mph:</span><span>2.9 seconds</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Top Speed:</span><span>202 mph</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('lamborghini-huracan', 'Lamborghini Huracán EVO')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Compact Electric Vehicle -->
@@ -662,7 +690,7 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">0-60 mph:</span><span>7.4 seconds</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Charging:</span><span>CHAdeMO & CCS</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('nissan-leaf', 'Nissan Leaf')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Affordable Luxury -->
@@ -678,7 +706,7 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">0-60 mph:</span><span>5.4 seconds</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Safety:</span><span>5-Star Rating</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('volvo-s60', 'Volvo S60 T6')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Entry-Level Sports Car -->
@@ -694,23 +722,23 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">0-60 mph:</span><span>5.7 seconds</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Type:</span><span>Convertible</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('mazda-mx5', 'Mazda MX-5 Miata')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Compact SUV -->
-                <div class="vehicle-card card" data-category="suv compact" data-vehicle="honda-crv">
+                <div class="vehicle-card card" data-category="suv compact" data-vehicle="range-rover-evoque">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Honda CR-V" />
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Range Rover Evoque" />
                     </div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 10px;">Honda CR-V EX-L</h3>
-                    <div class="vehicle-price" style="font-size: 1.2rem; font-weight: 600; color: #000; margin-bottom: 15px;">Starting at ₹32,00,000</div>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 10px;">Range Rover Evoque</h3>
+                    <div class="vehicle-price" style="font-size: 1.2rem; font-weight: 600; color: #000; margin-bottom: 15px;">Starting at ₹68,94,300</div>
                     <ul style="list-style: none; margin-bottom: 20px;">
-                        <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">Engine:</span><span>1.5L Turbo I4</span></li>
-                        <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">Power:</span><span>190 HP</span></li>
+                        <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">Engine:</span><span>2.0L I4 Turbo</span></li>
+                        <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">Power:</span><span>246 HP</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">Seating:</span><span>5 Passengers</span></li>
-                        <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Fuel Economy:</span><span>28/34 mpg</span></li>
+                        <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">0-60 mph:</span><span>7.0 seconds</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('range-rover-evoque', 'Range Rover Evoque')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Hybrid Electric -->
@@ -726,13 +754,13 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">EV Range:</span><span>44 miles</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Combined MPG:</span><span>54 mpg</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('toyota-prius', 'Toyota Prius Prime')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
 
                 <!-- Mid-size SUV -->
                 <div class="vehicle-card card" data-category="suv" data-vehicle="ford-explorer">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ford Explorer" />
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ford Explorer" />
                     </div>
                     <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 10px;">Ford Explorer Limited</h3>
                     <div class="vehicle-price" style="font-size: 1.2rem; font-weight: 600; color: #000; margin-bottom: 15px;">Starting at ₹36,81,000</div>
@@ -742,7 +770,7 @@
                         <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.1);"><span style="font-weight: 500;">Seating:</span><span>7 Passengers</span></li>
                         <li style="display: flex; justify-content: space-between; padding: 5px 0;"><span style="font-weight: 500;">Towing:</span><span>5,600 lbs</span></li>
                     </ul>
-                    <a href="schedule.html" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none;">Schedule Test Drive</a>
+                    <button onclick="scheduleTestDrive('ford-explorer', 'Ford Explorer Limited')" class="btn" style="pointer-events: auto; position: relative; z-index: 100; display: inline-block; text-decoration: none; background: #000; color: #fff; border: none; cursor: pointer;">Schedule Test Drive</button>
                 </div>
             </div>
         </div>
@@ -858,9 +886,11 @@
         window.addEventListener('storage', checkLoginStatus);
 
         // Schedule Test Drive Function
-        function scheduleTestDrive(vehicleId) {
+        function scheduleTestDrive(vehicleId, vehicleName) {
+            console.log('Scheduling test drive for:', vehicleId, vehicleName);
             // Store the selected vehicle for the schedule page
             localStorage.setItem('selectedVehicle', vehicleId);
+            localStorage.setItem('selectedVehicleName', vehicleName);
             
             // Redirect to schedule page
             window.location.href = 'schedule.html';
