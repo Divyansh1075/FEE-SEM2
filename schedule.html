@@ -452,14 +452,18 @@
                         <label for="vehicle">Vehicle of Interest</label>
                         <select id="vehicle" name="vehicle" required>
                             <option value="">Select a vehicle</option>
-                            <option value="bmw-m5">BMW 7 Series</option>
-                            <option value="mercedes-s63">Mercedes-Benz GLS 580</option>
-                            <option value="audi-rs7">Audi A8 L 60 TFSI</option>
+                            <option value="bmw-7-series">BMW 7 Series</option>
                             <option value="porsche-911">Porsche 911 Turbo S</option>
-                            <option value="tesla-plaid">Tesla Model S Plaid</option>
+                            <option value="tesla-model-s">Tesla Model S Plaid</option>
+                            <option value="mercedes-gls">Mercedes-Benz GLS 580</option>
+                            <option value="audi-a8">Audi A8 L 60 TFSI</option>
                             <option value="lamborghini-huracan">Lamborghini Huracán EVO</option>
-                            <option value="bentley-continental">Bentley Continental GT</option>
-                            <option value="maserati-quattroporte">Maserati Quattroporte</option>
+                            <option value="nissan-leaf">Nissan Leaf</option>
+                            <option value="volvo-s60">Volvo S60 T6</option>
+                            <option value="mazda-mx5">Mazda MX-5 Miata</option>
+                            <option value="honda-crv">Honda CR-V EX-L</option>
+                            <option value="toyota-prius">Toyota Prius Prime</option>
+                            <option value="ford-explorer">Ford Explorer Limited</option>
                         </select>
                     </div>
                     <div class="form-row">
@@ -475,6 +479,40 @@
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">Test Drive City</label>
+                            <select id="city" name="city" required>
+                                <option value="">Select your city</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="delhi">New Delhi</option>
+                                <option value="bangalore">Bangalore</option>
+                                <option value="hyderabad">Hyderabad</option>
+                                <option value="chennai">Chennai</option>
+                                <option value="kolkata">Kolkata</option>
+                                <option value="pune">Pune</option>
+                                <option value="ahmedabad">Ahmedabad</option>
+                                <option value="jaipur">Jaipur</option>
+                                <option value="surat">Surat</option>
+                                <option value="lucknow">Lucknow</option>
+                                <option value="kanpur">Kanpur</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="indore">Indore</option>
+                                <option value="bhopal">Bhopal</option>
+                                <option value="visakhapatnam">Visakhapatnam</option>
+                                <option value="patna">Patna</option>
+                                <option value="vadodara">Vadodara</option>
+                                <option value="ghaziabad">Ghaziabad</option>
+                                <option value="ludhiana">Ludhiana</option>
+                            </select>
+                            <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">Select the city where you want to take the test drive</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Your Address</label>
+                            <input type="text" id="address" name="address" placeholder="Enter your complete address with landmark" required>
+                            <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">We'll coordinate pickup/delivery if available in your area</small>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -522,7 +560,7 @@
             }
         });
 
-        // Form submission
+                // Form submission
         document.getElementById('scheduleForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -531,11 +569,13 @@
             const name = formData.get('name');
             const phone = formData.get('phone');
             const email = formData.get('email');
+            const city = formData.get('city');
+            const address = formData.get('address');
             const date = formData.get('date');
             const time = formData.get('time');
             
             // Basic validation
-            if (!vehicle || !name || !phone || !email || !date || !time) {
+            if (!vehicle || !name || !phone || !email || !city || !address || !date || !time) {
                 alert('Please fill in all required fields');
                 return;
             }
@@ -554,6 +594,12 @@
                 return;
             }
             
+            // Address validation (minimum length)
+            if (address.trim().length < 10) {
+                alert('Please enter a complete address (minimum 10 characters)');
+                return;
+            }
+            
             // Date validation (must be future date)
             const selectedDate = new Date(date);
             const today = new Date();
@@ -564,8 +610,9 @@
                 return;
             }
             
-            // Success message
-            alert(`Thank you, ${name}! Your test drive for the ${vehicle} has been scheduled for ${date} at ${time}. We will contact you at ${phone} to confirm your appointment.`);
+            // Success message with city information
+            const cityName = document.getElementById('city').options[document.getElementById('city').selectedIndex].text;
+            alert(`Thank you, ${name}! Your test drive for the ${vehicle} has been scheduled for ${date} at ${time} in ${cityName}. We will contact you at ${phone} to confirm your appointment and coordinate the pickup from your address.`);
             
             // Reset form
             this.reset();
@@ -608,27 +655,133 @@
             
             // Check if a vehicle was selected from the vehicles page
             const selectedVehicle = localStorage.getItem('selectedVehicle');
-            if (selectedVehicle) {
+            const selectedVehicleName = localStorage.getItem('selectedVehicleName');
+            
+            if (selectedVehicle && selectedVehicleName) {
                 const vehicleSelect = document.getElementById('vehicle');
                 
-                // Vehicle mapping from vehicles page to schedule page options
-                const vehicleMapping = {
-                    'bmw-7-series': 'bmw-m5',
-                    'porsche-911': 'porsche-911',
-                    'tesla-model-s': 'tesla-plaid',
-                    'mercedes-gls': 'mercedes-s63',
-                    'audi-a8': 'audi-rs7',
-                    'lamborghini-huracan': 'lamborghini-huracan'
-                };
+                console.log('Found selected vehicle:', selectedVehicle, selectedVehicleName);
                 
                 // Set the selected vehicle in the dropdown
-                const mappedVehicle = vehicleMapping[selectedVehicle];
-                if (mappedVehicle) {
-                    vehicleSelect.value = mappedVehicle;
+                vehicleSelect.value = selectedVehicle;
+                
+                // If the vehicle isn't in our dropdown options, add it
+                if (!vehicleSelect.querySelector(`option[value="${selectedVehicle}"]`)) {
+                    const newOption = document.createElement('option');
+                    newOption.value = selectedVehicle;
+                    newOption.textContent = selectedVehicleName;
+                    newOption.selected = true;
+                    vehicleSelect.appendChild(newOption);
+                } else {
+                    // Update the existing option text to match the exact name
+                    const existingOption = vehicleSelect.querySelector(`option[value="${selectedVehicle}"]`);
+                    if (existingOption) {
+                        existingOption.textContent = selectedVehicleName;
+                        existingOption.selected = true;
+                    }
                 }
                 
-                // Clear the stored vehicle selection
-                localStorage.removeItem('selectedVehicle');
+                // Show a confirmation message
+                const confirmationMsg = document.createElement('div');
+                confirmationMsg.style.cssText = `
+                    background: #d4edda;
+                    color: #155724;
+                    border: 1px solid #c3e6cb;
+                    padding: 10px;
+                    margin-bottom: 20px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                `;
+                confirmationMsg.innerHTML = `✓ Vehicle pre-selected: <strong>${selectedVehicleName}</strong>`;
+                
+                const form = document.getElementById('scheduleForm');
+                form.parentNode.insertBefore(confirmationMsg, form);
+                
+                // Clear the stored vehicle selection after a short delay
+                setTimeout(() => {
+                    localStorage.removeItem('selectedVehicle');
+                    localStorage.removeItem('selectedVehicleName');
+                }, 1000);
+            }
+        });
+        
+        // Address input helper
+        document.getElementById('address').addEventListener('input', function() {
+            const address = this.value.trim();
+            const addressGroup = this.parentElement;
+            
+            // Remove existing validation message
+            const existingMsg = addressGroup.querySelector('.address-validation');
+            if (existingMsg) {
+                existingMsg.remove();
+            }
+            
+            if (address.length > 0 && address.length < 10) {
+                const validationMsg = document.createElement('small');
+                validationMsg.className = 'address-validation';
+                validationMsg.style.cssText = 'color: #dc3545; font-size: 12px; margin-top: 5px; display: block;';
+                validationMsg.textContent = 'Please provide a more complete address (minimum 10 characters)';
+                addressGroup.appendChild(validationMsg);
+            } else if (address.length >= 10) {
+                const validationMsg = document.createElement('small');
+                validationMsg.className = 'address-validation';
+                validationMsg.style.cssText = 'color: #28a745; font-size: 12px; margin-top: 5px; display: block;';
+                validationMsg.innerHTML = '✓ Address looks good';
+                addressGroup.appendChild(validationMsg);
+            }
+        });
+        
+        // City selection handler - Show showroom info
+        document.getElementById('city').addEventListener('change', function() {
+            const selectedCity = this.value;
+            const cityText = this.options[this.selectedIndex].text;
+            
+            // Remove any existing city info
+            const existingInfo = document.getElementById('cityInfo');
+            if (existingInfo) {
+                existingInfo.remove();
+            }
+            
+            if (selectedCity) {
+                // Create city information display
+                const cityInfo = document.createElement('div');
+                cityInfo.id = 'cityInfo';
+                cityInfo.style.cssText = `
+                    background: #f8f9fa;
+                    border: 1px solid #e9ecef;
+                    padding: 15px;
+                    margin-top: 10px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    color: #495057;
+                `;
+                
+                // Showroom information based on city
+                const showroomInfo = {
+                    'mumbai': 'Elite Motors Mumbai Showroom - Bandra Kurla Complex | Available: Home pickup service',
+                    'delhi': 'Elite Motors Delhi Showroom - Connaught Place | Available: Home pickup service',
+                    'bangalore': 'Elite Motors Bangalore Showroom - UB City Mall | Available: Home pickup service',
+                    'hyderabad': 'Elite Motors Hyderabad Showroom - Banjara Hills | Available: Home pickup service',
+                    'chennai': 'Elite Motors Chennai Showroom - Express Avenue | Available: Home pickup service',
+                    'kolkata': 'Elite Motors Kolkata Showroom - Park Street | Available: Home pickup service',
+                    'pune': 'Elite Motors Pune Showroom - Koregaon Park | Available: Home pickup service',
+                    'ahmedabad': 'Elite Motors Ahmedabad Showroom - SG Highway | Available: Home pickup service',
+                    'jaipur': 'Elite Motors Jaipur Showroom - Malviya Nagar | Available: Home pickup service',
+                    'surat': 'Elite Motors Surat Showroom - Ring Road | Available: Home pickup service'
+                };
+                
+                const defaultInfo = `Elite Motors ${cityText} - Contact us for showroom location | Available: Scheduled test drives`;
+                
+                cityInfo.innerHTML = `
+                    <strong>📍 ${showroomInfo[selectedCity] || defaultInfo}</strong>
+                    <br><small style="color: #6c757d; margin-top: 5px; display: block;">
+                        Test drives can be arranged at our showroom or at your preferred location within city limits.
+                    </small>
+                `;
+                
+                // Insert after the city form group
+                const cityFormGroup = this.parentElement;
+                cityFormGroup.appendChild(cityInfo);
             }
         });
         
