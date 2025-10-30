@@ -503,133 +503,188 @@
             opacity: 0.6;
         }
 
-        /* Menu Toggle */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-            padding: 5px;
-            z-index: 1001;
+        /* Dropdown Menu Container */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
         }
 
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
+        .dropdown-btn {
             background: #000000;
+            color: #ffffff;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Hamburger animation */
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
+        .dropdown-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
         }
 
-        .menu-toggle.active span:nth-child(2) {
+        .dropdown-btn::after {
+            content: '▼';
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-btn.active::after {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Content */
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #ffffff;
+            min-width: 280px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            z-index: 1001;
             opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
         }
 
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
+        .dropdown-content.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .grid-3 {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 20px;
-            }
+        .dropdown-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
+        .dropdown-header h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dropdown-section {
+            padding: 10px 0;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #000000;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            border-left-color: #000000;
+            padding-left: 24px;
+        }
+
+        .dropdown-item.active {
+            background: #000000;
+            color: #ffffff;
+            border-left-color: #ffffff;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.08);
+            margin: 8px 0;
+        }
+
+        /* Mobile Responsive for Dropdown */
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 30px;
-            }
-
-            .nav-links {
-                gap: 20px;
-            }
-
-            .nav-links li a {
-                font-size: 14px;
-            }
-
-            .nav-btn {
-                padding: 8px 16px;
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar {
-                padding: 15px 20px;
             }
 
             .logo {
                 font-size: 24px;
             }
 
-            .nav-links {
+            .nav-dropdown {
+                position: static;
+            }
+
+            .dropdown-content {
                 position: fixed;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100vh;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: left 0.4s ease;
-                z-index: 1000;
-                opacity: 0;
-                visibility: hidden;
+                top: 70px;
+                left: 20px;
+                right: 20px;
+                min-width: auto;
+                max-height: 70vh;
+                overflow-y: auto;
             }
 
-            .nav-links.active {
-                left: 0;
-                opacity: 1;
-                visibility: visible;
+            .nav-actions {
+                gap: 10px;
             }
 
-            .nav-links li {
-                margin: 15px 0;
-                opacity: 0;
-                transform: translateX(-50px);
-                transition: all 0.4s ease;
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 12px 15px;
             }
 
-            .nav-links.active li {
-                opacity: 1;
-                transform: translateX(0);
+            .logo {
+                font-size: 20px;
             }
 
-            .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
-            .nav-links.active li:nth-child(2) { transition-delay: 0.2s; }
-            .nav-links.active li:nth-child(3) { transition-delay: 0.3s; }
-            .nav-links.active li:nth-child(4) { transition-delay: 0.4s; }
-            .nav-links.active li:nth-child(5) { transition-delay: 0.5s; }
-            .nav-links.active li:nth-child(6) { transition-delay: 0.6s; }
-
-            .nav-links li a {
-                font-size: 24px;
-                padding: 15px 30px;
-                display: block;
-                text-align: center;
-                color: #000000;
-                font-weight: 500;
-                border-radius: 8px;
-                transition: all 0.3s ease;
-                min-width: 200px;
+            .dropdown-btn {
+                padding: 10px 16px;
+                font-size: 14px;
             }
 
-            .nav-links li a:hover,
-            .nav-links li a.active {
-                background: #000000;
-                color: #ffffff;
-                transform: scale(1.05);
+            .dropdown-content {
+                top: 60px;
+                left: 10px;
+                right: 10px;
             }
+
+            .nav-actions {
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            .welcome-text {
+                font-size: 11px;
+            }
+
+            .logout-btn {
+                padding: 3px 8px;
+                font-size: 10px;
+            }
+        }
 
             .menu-toggle {
                 display: flex;
@@ -817,16 +872,32 @@
     <!-- Navigation -->
     <nav class="navbar">
         <a href="index.html" class="logo">Elite Motors</a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="vehicles.html" class="active">Vehicles</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="finance.html">Financing</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+        
+        <div class="nav-dropdown">
+            <button class="dropdown-btn" id="dropdownBtn">
+                Menu
+            </button>
+            <div class="dropdown-content" id="dropdownContent">
+                <div class="dropdown-header">
+                    <h3>Navigation</h3>
+                </div>
+                <div class="dropdown-section">
+                    <a href="index.html" class="dropdown-item">🏠 Home</a>
+                    <a href="vehicles.html" class="dropdown-item active">🚗 Vehicles</a>
+                    <a href="services.html" class="dropdown-item">🔧 Services</a>
+                    <a href="finance.html" class="dropdown-item">💳 Financing</a>
+                    <a href="about.html" class="dropdown-item">ℹ️ About</a>
+                    <a href="contact.html" class="dropdown-item">📞 Contact</a>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-section">
+                    <a href="schedule.html" class="dropdown-item">📅 Schedule Test Drive</a>
+                    <a href="login.html" class="dropdown-item">👤 Login</a>
+                </div>
+            </div>
+        </div>
+
         <div class="nav-actions">
-            <a href="schedule.html" class="nav-btn">Schedule Test Drive</a>
             <div id="loginStatus">
                 <a href="login.html" class="nav-btn primary" id="loginButton">Login</a>
                 <div id="userWelcome" class="user-welcome" style="display: none;">
@@ -834,11 +905,6 @@
                     <button class="logout-btn" onclick="logout()">Logout</button>
                 </div>
             </div>
-        </div>
-        <div class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
         </div>
     </nav>
 
@@ -1188,70 +1254,61 @@
             'lamborghini-huracan': 'Lamborghini Huracán EVO'
         };
 
-        // Mobile menu toggle with enhanced animation
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
+        // Dropdown menu functionality
+        const dropdownBtn = document.getElementById('dropdownBtn');
+        const dropdownContent = document.getElementById('dropdownContent');
         
-        if (menuToggle && navLinks) {
-            // Only add mobile menu functionality if screen is small
-            function initializeMobileMenu() {
-                if (window.innerWidth <= 480) {
-                    menuToggle.addEventListener('click', toggleMobileMenu);
-                    navLinks.addEventListener('click', closeMobileMenuOnClick);
-                    document.addEventListener('click', closeMobileMenuOnOutsideClick);
-                    document.addEventListener('keydown', closeMobileMenuOnEscape);
-                }
-            }
-
-            function toggleMobileMenu() {
-                menuToggle.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                
-                // Prevent body scroll when menu is open
-                if (navLinks.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
-                }
-            }
-
-            function closeMobileMenuOnClick(e) {
-                if (e.target.tagName === 'A') {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-
-            function closeMobileMenuOnOutsideClick(e) {
-                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-
-            function closeMobileMenuOnEscape(e) {
-                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-
-            // Initialize mobile menu
-            initializeMobileMenu();
-
-            // Re-initialize on window resize
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 480) {
-                    // Remove mobile menu functionality on larger screens
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-                initializeMobileMenu();
+        if (dropdownBtn && dropdownContent) {
+            // Toggle dropdown on button click
+            dropdownBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleDropdown();
             });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!dropdownBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+                    closeDropdown();
+                }
+            });
+
+            // Close dropdown when clicking on a link
+            dropdownContent.addEventListener('click', (e) => {
+                if (e.target.classList.contains('dropdown-item')) {
+                    closeDropdown();
+                }
+            });
+
+            // Close dropdown on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeDropdown();
+                }
+            });
+
+            function toggleDropdown() {
+                const isOpen = dropdownContent.classList.contains('show');
+                if (isOpen) {
+                    closeDropdown();
+                } else {
+                    openDropdown();
+                }
+            }
+
+            function openDropdown() {
+                dropdownContent.classList.add('show');
+                dropdownBtn.classList.add('active');
+                dropdownBtn.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeDropdown() {
+                dropdownContent.classList.remove('show');
+                dropdownBtn.classList.remove('active');
+                dropdownBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            // Initialize dropdown state
+            closeDropdown();
         }
     </script>
 
